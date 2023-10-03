@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:movies/core/constant/routes.dart';
 import 'package:movies/data/model/mostpopular.dart';
 import 'package:movies/view/component/home/towatch/imageinfo.dart';
 
@@ -15,8 +17,11 @@ class ToWatchHome extends StatelessWidget {
   Widget build(BuildContext context) {
     var random = Random();
     int randomint = random.nextInt(15);
+    print(randomint);
     return InkWell(
-      onTap:onToWatchPressed,
+      onTap:() {
+       Get.toNamed(AppRoutes.seriesDetails,arguments: {"SeriesDetails":toWatchModel[randomint].id!});
+      },
       child: Container(
         width: 394,
         height: 230,

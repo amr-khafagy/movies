@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:movies/core/class/statusrequst.dart';
+import 'package:movies/core/constant/routes.dart';
 import 'package:movies/core/function/handlingdata.dart';
+import 'package:movies/data/model/details.dart';
 import 'package:movies/data/model/mostpopular.dart';
 import 'package:movies/data/remote/movieslink.dart';
 
@@ -36,7 +38,9 @@ int totalPages=1220;
       getMostPopular(page);
     }
   }
-
+gotoSeriesDetails(TvShows seriesModel){
+    Get.toNamed(AppRoutes.seriesDetails,arguments: {"SeriesId":seriesModel});
+}
   dscreasePage() {
     if (page == 1) {
       page = totalPages;

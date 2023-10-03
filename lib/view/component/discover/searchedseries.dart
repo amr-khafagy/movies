@@ -1,12 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:movies/core/constant/appcolor.dart';
+import 'package:movies/core/constant/routes.dart';
 import 'package:movies/data/model/mostpopular.dart';
 
 class SearchedSeries extends StatelessWidget {
   final List<TvShows> listSearchModel;
-  final void Function()? onSearchedSeriesTap;
-  const SearchedSeries({Key? key,  required this.listSearchModel, this.onSearchedSeriesTap}) : super(key: key);
+  const SearchedSeries({Key? key,  required this.listSearchModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,10 @@ class SearchedSeries extends StatelessWidget {
               crossAxisCount: 2),
           itemBuilder: (context, index) {
             return InkWell(
-              onTap: onSearchedSeriesTap,
+              onTap:() {
+                Get.toNamed(AppRoutes.seriesDetails,arguments: {"SeriesDetails":listSearchModel[index].id!});
+
+              },
               child: Column(
                 children: [
                   Expanded(

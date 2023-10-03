@@ -15,4 +15,9 @@ class MoviesLink {
         .postData("https://www.episodate.com/api/search?q=$searchText&page=$page", {});
     return response.fold((l) => l, (r) => r);
   }
+  getSeriesDetails(int id) async {
+    var response = await crud
+        .postData("https://www.episodate.com/api/show-details?q=$id", {});
+    return response.fold((l) => l, (r) => r);
+  }
 }

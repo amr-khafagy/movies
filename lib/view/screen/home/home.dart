@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:movies/controller/Home/home.dart';
 import 'package:movies/core/class/handlingdataview.dart';
 import 'package:movies/core/constant/appcolor.dart';
+import 'package:movies/data/model/mostpopular.dart';
 import 'package:movies/view/component/home/towatch/to_watch_home.dart';
 import 'package:movies/view/component/home/trending/changepage.dart';
 import 'package:movies/view/component/home/trending/trending.dart';
@@ -37,7 +38,7 @@ class Home extends StatelessWidget {
                         padding: EdgeInsets.only(top: 53, bottom: 20),
                         child: AuthTitle(titleText: "Trending"),
                       ),
-                      Trending(trendingModel: homeController.data),
+                      Trending(trendingModel: homeController.data ),
                       ChangePage(
                         increasePage: () {
                           homeController.increasePage();

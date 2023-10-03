@@ -19,4 +19,7 @@ class AppColor {
   static const rowButton = Color(0xffD9D9D9);
   static const backgroundIconColor=Color(0xffFF8F71);
   static const infoCard=Color.fromRGBO(218, 218, 218, .30);
+//details
+  static const basicDetailsColor=Color(0xFFFFFFFF);
+  static const bodyDetailsColor=Color(0xFFBCBCBC);
 }
