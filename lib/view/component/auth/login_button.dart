@@ -4,8 +4,8 @@ import 'package:movies/core/constant/appcolor.dart';
 
 class AuthButton extends StatelessWidget {
   final String textAuth;
-
-  const AuthButton({Key? key, required this.textAuth}) : super(key: key);
+final void Function()? onAuth;
+  const AuthButton({Key? key, required this.textAuth, this.onAuth}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class AuthButton extends StatelessWidget {
         width: 295,
         height: 48,
         child: MaterialButton(
-          onPressed: () {},
+          onPressed:onAuth,
           height: 48,
           child: Text(textAuth,
               style: TextStyle(

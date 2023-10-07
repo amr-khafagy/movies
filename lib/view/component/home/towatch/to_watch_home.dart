@@ -17,10 +17,10 @@ class ToWatchHome extends StatelessWidget {
   Widget build(BuildContext context) {
     var random = Random();
     int randomint = random.nextInt(15);
-    print(randomint);
+ int id=toWatchModel[randomint].id!;
     return InkWell(
       onTap:() {
-       Get.toNamed(AppRoutes.seriesDetails,arguments: {"SeriesDetails":toWatchModel[randomint].id!});
+       Get.toNamed(AppRoutes.seriesDetails,arguments: {"SeriesDetails":id});
       },
       child: Container(
         width: 394,

@@ -5,9 +5,20 @@ import 'package:movies/core/constant/appcolor.dart';
 class AuthTextField extends StatelessWidget {
   final String hintText;
   final String textLabel;
+  final TextEditingController authTextEditingcontroller;
+  final String? Function(String?) valid;
+  final bool isShowPassword = false;
+  final void Function()? ontab;
+  final IconData? showIcon;
 
   const AuthTextField(
-      {Key? key, required this.hintText, required this.textLabel})
+      {Key? key,
+      required this.hintText,
+      required this.textLabel,
+      required this.authTextEditingcontroller,
+      required this.valid,
+      this.ontab,
+      this.showIcon})
       : super(key: key);
 
   @override
@@ -29,6 +40,11 @@ class AuthTextField extends StatelessWidget {
             height: 6,
           ),
           TextFormField(
+            obscureText: isShowPassword == null || isShowPassword == false
+                ? false
+                : true,
+            validator: valid,
+            controller: authTextEditingcontroller,
             decoration: InputDecoration(
                 fillColor: AppColor.headLineColor,
                 border: OutlineInputBorder(
@@ -47,4 +63,3 @@ class AuthTextField extends StatelessWidget {
     );
   }
 }
-

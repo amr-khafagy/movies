@@ -4,12 +4,15 @@ import 'package:get/get.dart';
 import 'package:movies/controller/seriesdetails/seriesdetails.dart';
 import 'package:movies/core/class/handlingdataview.dart';
 import 'package:movies/core/constant/appcolor.dart';
+import 'package:movies/view/component/details/dateandgeners/dateandgeners.dart';
+import 'package:movies/view/component/details/descriptionandpictures/descriptionandpictures.dart';
 import 'package:movies/view/component/details/divider.dart';
+import 'package:movies/view/component/details/eposides/eposides.dart';
 import 'package:movies/view/component/details/image/imageandtrailler.dart';
 import 'package:movies/view/component/details/title_time_rating.dart';
 
 class SeriesDetails extends StatelessWidget {
-  const SeriesDetails({Key? key}) : super(key: key);
+  SeriesDetails({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +30,14 @@ class SeriesDetails extends StatelessWidget {
                   children: [
                     ImageAndTrailler(
                       seriesImage: listDetailsData[index].imageThumbnailPath!,
+                      showTrailler: listDetailsData[index].youtubeLink != null
+                          ? () {
+                              detailsController.launchTrailler(
+                                  listDetailsData[index].youtubeLink!);
+                            }
+                          : () {
+                              detailsController.alert();
+                            },
                     ),
                     TitleAndTimeAndRating(
                         seriesName: listDetailsData[index].name!,
@@ -35,6 +46,19 @@ class SeriesDetails extends StatelessWidget {
                         country: listDetailsData[index].country!,
                         network: listDetailsData[index].network!),
                     const DetailsDivider(),
+                    DateAndGeners(
+                      genersNumber: listDetailsData[index].genres!.length,
+                      releasDate: listDetailsData[index].startDate!,
+                      seriesGeners: listDetailsData[index].genres!,
+                    ),
+                    const DetailsDivider(),
+                    SynopsisAndPictures(
+                        synopsis: listDetailsData[index].description!,
+                        picture: listDetailsData[index].pictures!,
+                        activeReadMore: detailsController.appearvalue,
+                        appearAndDisappear: () {
+                          detailsController.appear();
+                        }),
                   ],
                 );
               },
@@ -43,13 +67,3 @@ class SeriesDetails extends StatelessWidget {
     );
   }
 }
-/*
-Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: CachedNetworkImageProvider(detailsController
-                            .listDetailsData[1].tvShow!.imageThumbnailPath!))),
-                height: 311,
-                width: 405,
-              );
- */
