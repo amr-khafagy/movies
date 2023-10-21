@@ -7,7 +7,7 @@ class AuthTextField extends StatelessWidget {
   final String textLabel;
   final TextEditingController authTextEditingcontroller;
   final String? Function(String?) valid;
-  final bool isShowPassword = false;
+  final bool? isShowPassword ;
   final void Function()? ontab;
   final IconData? showIcon;
 
@@ -18,7 +18,7 @@ class AuthTextField extends StatelessWidget {
       required this.authTextEditingcontroller,
       required this.valid,
       this.ontab,
-      this.showIcon})
+      this.showIcon, this.isShowPassword})
       : super(key: key);
 
   @override
@@ -46,6 +46,7 @@ class AuthTextField extends StatelessWidget {
             validator: valid,
             controller: authTextEditingcontroller,
             decoration: InputDecoration(
+                prefixIcon: IconButton(icon: Icon(showIcon), onPressed: ontab),
                 fillColor: AppColor.headLineColor,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(6),

@@ -1,18 +1,17 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movies/core/class/statusrequst.dart';
-import 'package:movies/core/constant/appcolor.dart';
 import 'package:movies/core/constant/routes.dart';
-import 'package:movies/core/function/firebase_functions/register.dart';
+import 'package:movies/core/class/firebase.dart';
+import 'package:movies/core/function/dialog.dart';
 
 class RegisterController extends GetxController {
   late TextEditingController email;
   late TextEditingController password;
   late TextEditingController username;
-  bool isShowPassword = false;
+  bool isShowPassword = true;
   StatusRequest statusRequest = StatusRequest.none;
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
   FireBaseUsage fireBaseUsage = FireBaseUsage();
@@ -25,26 +24,17 @@ class RegisterController extends GetxController {
           email.text, password.text, username.text);
       if (user != null) {
         await fireBaseUsage.sendEmailVerification(user);
-        Get.offAllNamed(AppRoutes.otp);
-      }else{
-        Get.defaultDialog(
-            title: "Warning",
-            middleText: "Do you want exit the app",
-            titleStyle:const TextStyle(
-              fontWeight: FontWeight.bold,
-              color: AppColor.backgroundColor,
-            ),
-            onCancel: (){},
-            cancelTextColor: AppColor.backgroundIconColor,
-            confirmTextColor: Colors.white,
-            buttonColor: AppColor.buttonColor,
-            onConfirm: (){}
-        );
+        Get.offAllNamed(AppRoutes.login);
+      } else {
+        deafultDialogGet("Error", "This account already have account",() {}, () {});
       }
     }
     update();
   }
-
+  showpassword() {
+    isShowPassword = isShowPassword == true ? false : true;
+    update();
+  }
   goToverification() {
     Get.offAllNamed(AppRoutes.verification);
     update();

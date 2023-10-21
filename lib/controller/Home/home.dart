@@ -1,17 +1,21 @@
 import 'package:get/get.dart';
+import 'package:movies/core/class/firebase.dart';
 import 'package:movies/core/class/statusrequst.dart';
 import 'package:movies/core/constant/routes.dart';
 import 'package:movies/core/function/handlingdata.dart';
 import 'package:movies/data/model/details.dart';
 import 'package:movies/data/model/mostpopular.dart';
 import 'package:movies/data/remote/movieslink.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeController extends GetxController {
   MoviesLink moviesLink = MoviesLink(crud: Get.find());
   List<TvShows> data = [];
-  late StatusRequest statuesRequest;
+   StatusRequest statuesRequest=StatusRequest.none;
+   FireBaseUsage fireBaseUsage=FireBaseUsage();
   int page = 1;
 int totalPages=1220;
+
   getMostPopular(int page) async {
     data.clear();
     statuesRequest = StatusRequest.loading;

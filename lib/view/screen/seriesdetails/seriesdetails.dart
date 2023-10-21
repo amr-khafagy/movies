@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movies/controller/seriesdetails/seriesdetails.dart';
@@ -7,12 +6,11 @@ import 'package:movies/core/constant/appcolor.dart';
 import 'package:movies/view/component/details/dateandgeners/dateandgeners.dart';
 import 'package:movies/view/component/details/descriptionandpictures/descriptionandpictures.dart';
 import 'package:movies/view/component/details/divider.dart';
-import 'package:movies/view/component/details/eposides/eposides.dart';
 import 'package:movies/view/component/details/image/imageandtrailler.dart';
 import 'package:movies/view/component/details/title_time_rating.dart';
 
 class SeriesDetails extends StatelessWidget {
-  SeriesDetails({Key? key}) : super(key: key);
+  const SeriesDetails({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +51,10 @@ class SeriesDetails extends StatelessWidget {
                     ),
                     const DetailsDivider(),
                     SynopsisAndPictures(
+                        activeWatchList: false,
+                        addToWatchList: () {
+                          detailsController.addToWatchList();
+                        },
                         synopsis: listDetailsData[index].description!,
                         picture: listDetailsData[index].pictures!,
                         activeReadMore: detailsController.appearvalue,

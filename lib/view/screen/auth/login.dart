@@ -39,6 +39,11 @@ class Login extends StatelessWidget {
                           textLabel: "Email",
                         ),
                         AuthTextField(
+                          isShowPassword: loginController.isShowPassword,
+                          ontab: () {
+                            loginController.showpassword();
+                          },
+                          showIcon: Icons.remove_red_eye,
                           authTextEditingcontroller:
                               loginController.passwordLogin,
                           valid: (val) {
@@ -47,7 +52,9 @@ class Login extends StatelessWidget {
                           hintText: "Password",
                           textLabel: "Password",
                         ),
-                        const ForgetPasswordText(),
+                        ForgetPasswordText(onForgetPassword: () {
+                          loginController.goToForgetPassword();
+                        }),
                         AuthButton(
                             textAuth: "Login",
                             onAuth: () {

@@ -24,10 +24,8 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           getPages: routes,
         );
-      },
-      designSize: const Size(360, 690),
+      }, designSize: const Size(360, 690),
       minTextAdapt: true,
-      splitScreenMode: true,
-    );
-  }
-}
+      splitScreenMode: true,);
+  }}
+

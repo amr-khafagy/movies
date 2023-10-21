@@ -54,8 +54,12 @@ class Register extends StatelessWidget {
                           return validinput(val!, 5, 100, "password");
                         },
                         showIcon: Icons.remove_red_eye,
+                        isShowPassword: registerController.isShowPassword,
+                        ontab: () {
+                          registerController.showpassword();
+                        },
                       ),
-                       AuthButton(
+                      AuthButton(
                           textAuth: "Register",
                           onAuth: () {
                             registerController.registerwitheEmailAndPassword();

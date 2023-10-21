@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:movies/core/constant/appcolor.dart';
 import 'package:movies/view/component/details/descriptionandpictures/descriptiontext.dart';
 import 'package:movies/view/component/details/descriptionandpictures/releatedpicture.dart';
@@ -10,10 +8,19 @@ import 'package:movies/view/component/details/subtiltle/subtitledescription.dart
 class SynopsisAndPictures extends StatelessWidget {
   final String synopsis;
   final List picture;
-  final  bool activeReadMore;
-final void Function()? appearAndDisappear;
-   SynopsisAndPictures(
-      {Key? key, required this.synopsis, required this.picture, required this.activeReadMore, this.appearAndDisappear})
+  final bool activeReadMore;
+  final bool activeWatchList;
+  final void Function()? appearAndDisappear;
+  final void Function()? addToWatchList;
+
+  const SynopsisAndPictures(
+      {Key? key,
+      required this.synopsis,
+      required this.picture,
+      required this.activeReadMore,
+      this.appearAndDisappear,
+      this.addToWatchList,
+      required this.activeWatchList})
       : super(key: key);
 
   @override
@@ -26,21 +33,39 @@ final void Function()? appearAndDisappear;
           Padding(
             padding: const EdgeInsets.only(top: 17, bottom: 12),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const SubTitle(title: "Synopsis"),
+                Row(
+                  children: [
+                    const SubTitle(title: "Synopsis"),
+                    IconButton(
+                        onPressed: appearAndDisappear,
+                        icon: activeReadMore == true
+                            ? const Icon(
+                                Icons.arrow_drop_up_sharp,
+                                size: 50,
+                                color: AppColor.buttonColor,
+                              )
+                            : const Icon(
+                                Icons.arrow_drop_down_sharp,
+                                size: 50,
+                                color: AppColor.backgroundIconColor,
+                              )),
+                  ],
+                ),
                 IconButton(
-                    onPressed:appearAndDisappear,
-                    icon: activeReadMore==true
+                    onPressed: addToWatchList,
+                    icon: activeWatchList == true
                         ? const Icon(
-                            Icons.arrow_drop_up_sharp,
-                            size: 50,
-                            color: AppColor.buttonColor,
+                            Icons.add_circle_outline,
+                            size: 30,
+                            color: AppColor.backgroundIconColor,
                           )
                         : const Icon(
-                            Icons.arrow_drop_down_sharp,
-                            size: 50,
-                            color: AppColor.buttonColor,
-                          ))
+                            Icons.add_circle,
+                            size: 30,
+                            color: AppColor.backgroundIconColor,
+                          )),
               ],
             ),
           ),
